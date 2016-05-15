@@ -1,52 +1,40 @@
 <?php
 
-namespace backend\components\sync\traits;
+namespace backend\components\sync\behavior;
 
+use yii\base\Behavior;
+use yii\base\Event;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveQuery;
-use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 
 /**
- * Trait Syncable
- * @package common\models\traits
- * @property string updated_at
+ * Class Syncable
+ * @package backend\components\sync\behavior
  */
-trait Syncable
+class Syncable extends Behavior
 {
-    use FormattedTimestamps;
-    protected static $timestamp_query_param = 'updated_after';
-    protected static $timestamp_column = 'updated_at';
+    public $timestampColumn = 'updated_at';
+    public $timestampQueryParam = 'updated_after';
 
-    /**
-     * @return string
-     */
-    public static function getTimestampQueryParam()
+    public function events()
     {
-        return static::$timestamp_query_param;
+        return [
+            ActiveRecord::EVENT_INIT => 'onInit'
+        ];
     }
-
-    public static function findLatestChanges(ActiveQuery $query, $updatedAfter = null)
-    {
-        return $query->andFilterWhere(['>', static::$timestamp_column, $updatedAfter]);
-    }
-
-    /**
-     * @return string
-     */
-    public static function getTimestampColumn()
-    {
-        return static::$timestamp_column;
-    }
-
-    public function behaviors()
-    {
-        return ArrayHelper::merge(parent::behaviors(), [
-            'syncable_timestamp' => [
+    
+    public function onInit(Event $event) {
+        /** @var ActiveRecord $model */
+        $model = $event->sender;
+        
+        $model->attachBehaviors([
+            'formattedTimestamps' => '\backend\components\sync\behavior\FormattedTimestamps',
+            'syncTimestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => false,
-                'updatedAtAttribute' => static::$timestamp_column,
+                'updatedAtAttribute' => $this->timestampColumn,
                 'value' => \Yii::$app->formatter->asDatetime(time()),
-            ]
+            ],
         ]);
     }
 }

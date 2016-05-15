@@ -6,7 +6,8 @@ use yii\base\Event;
 use yii\db\ActiveRecord;
 
 /**
- * FormattedTimestamps behavior
+ * Class FormattedTimestamps
+ * @package backend\components\sync\behavior
  */
 class FormattedTimestamps extends Behavior
 {

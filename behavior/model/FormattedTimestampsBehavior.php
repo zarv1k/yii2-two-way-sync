@@ -1,15 +1,15 @@
 <?php
-namespace backend\components\sync\behavior;
+namespace backend\components\sync\behavior\model;
 
 use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;
 
 /**
- * Class FormattedTimestamps
- * @package backend\components\sync\behavior
+ * Class FormattedTimestampsBehavior
+ * @package backend\components\sync\behavior\model
  */
-class FormattedTimestamps extends Behavior
+class FormattedTimestampsBehavior extends Behavior
 {
     /** @var  array */
     protected static $timestampColumns;

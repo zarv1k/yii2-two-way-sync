@@ -9,11 +9,11 @@ use yii\db\ActiveQuery;
 use yii\rest\IndexAction;
 
 /**
- * Class LatestChangesBehavior
+ * Class IndexLatestBehavior
  * @property IndexAction owner
  * @package backend\components\sync\behavior\action
  */
-class LatestChangesBehavior extends Behavior
+class IndexLatestBehavior extends Behavior
 {
     public function attach($owner)
     {

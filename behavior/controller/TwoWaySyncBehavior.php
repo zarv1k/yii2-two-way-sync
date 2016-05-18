@@ -2,7 +2,8 @@
 
 namespace backend\components\sync\behavior\controller;
 
-use backend\components\sync\behavior\action\LatestChangesBehavior;
+use backend\components\sync\behavior\action\IndexLatestBehavior;
+use backend\components\sync\behavior\action\UpdateConflictBehavior;
 use backend\components\sync\behavior\model\SyncableBehavior;
 use yii\base\ActionEvent;
 use yii\base\Behavior;
@@ -12,7 +13,9 @@ use yii\db\ActiveRecord;
 use yii\db\BaseActiveRecord;
 use yii\rest\Action;
 use yii\rest\Controller;
+use yii\rest\CreateAction;
 use yii\rest\IndexAction;
+use yii\rest\UpdateAction;
 
 /**
  * Class TwoWaySyncBehavior
@@ -42,11 +45,23 @@ class TwoWaySyncBehavior extends Behavior
 
         switch (get_class($action)) {
             case IndexAction::className():
-                $action->attachBehavior('latestChanges', LatestChangesBehavior::className());
+                $action->attachBehavior('indexLatest', IndexLatestBehavior::className());
+                break;
+
+            case CreateAction::className():
+                // nothing to attach on create for now
+                // TODO: check is needed to behave something here
+                break;
+            
+            case UpdateAction::className():
+                $action->attachBehavior('updateConflict', UpdateConflictBehavior::className());
                 break;
 
             default:
-                // TODO: implement this case to run 
+                // TODO: implement custom new so called 'TwoWaySync action' stub for future custom actions
+                // TODO: and add method attachSyncBehaviors()
+                // $action->attachSyncBehaviors();
+                
                 throw new NotSupportedException("Not implemented yet");
 
                 break;

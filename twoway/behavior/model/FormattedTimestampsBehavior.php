@@ -1,5 +1,5 @@
 <?php
-namespace backend\components\sync\behavior\model;
+namespace zarv1k\sync\twoway\behavior\model;
 
 use yii\base\Behavior;
 use yii\base\Event;
@@ -7,7 +7,7 @@ use yii\db\ActiveRecord;
 
 /**
  * Class FormattedTimestampsBehavior
- * @package backend\components\sync\behavior\model
+ * @package zarv1k\sync\twoway\behavior\model
  */
 class FormattedTimestampsBehavior extends Behavior
 {

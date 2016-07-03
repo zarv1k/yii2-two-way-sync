@@ -1,8 +1,8 @@
 <?php
 
-namespace backend\components\sync\behavior\action;
+namespace zarv1k\sync\twoway\behavior\action;
 
-use backend\components\sync\behavior\model\SyncableBehavior;
+use zarv1k\sync\twoway\behavior\model\SyncableBehavior;
 use yii\base\ActionEvent;
 use yii\base\Behavior;
 use yii\base\Event;
@@ -119,9 +119,10 @@ class UpdateConflictBehavior extends Behavior
         return [
             Validator::createValidator('safe', $model, $model->timestampColumn, ['on' => $action->scenario]),
             Validator::createValidator('required', $model, $model->timestampColumn, ['on' => $action->scenario]),
+            Validator::createValidator('filter', $model, $model->timestampColumn, ['on' => $action->scenario, 'filter' => 'strtotime']),
             Validator::createValidator('compare', $model, $model->timestampColumn, [
                 'on' => $action->scenario,
-                'compareValue' => $model->getOldAttribute($model->timestampColumn),
+                'compareValue' => strtotime($model->getOldAttribute($model->timestampColumn)),
                 'message' => static::CONFLICT_MESSAGE_MARKER,
             ])
         ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\components\sync\behavior\model;
+namespace zarv1k\sync\twoway\behavior\model;
 
 use yii\base\Behavior;
 use yii\base\InvalidParamException;
@@ -9,7 +9,7 @@ use yii\db\ActiveRecord;
 
 /**
  * Class SyncableBehavior
- * @package backend\components\sync\behavior\model
+ * @package zarv1k\sync\twoway\behavior\model
  */
 class SyncableBehavior extends Behavior
 {
@@ -37,7 +37,10 @@ class SyncableBehavior extends Behavior
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => false,
                 'updatedAtAttribute' => $this->timestampColumn,
-                'value' => \Yii::$app->formatter->asDatetime(time()),
+                'value' => function() {
+                    // TODO: check this, may be incorrect format for save !!!
+                    return \Yii::$app->formatter->asDatetime(time());
+                }
             ],
         ]);
     }

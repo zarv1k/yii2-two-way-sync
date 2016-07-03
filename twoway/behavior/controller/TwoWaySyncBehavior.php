@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\components\sync\behavior\controller;
+namespace zarv1k\sync\twoway\behavior\controller;
 
-use backend\components\sync\behavior\action\IndexLatestBehavior;
-use backend\components\sync\behavior\action\UpdateConflictBehavior;
-use backend\components\sync\behavior\model\SyncableBehavior;
+use zarv1k\sync\twoway\behavior\action\IndexLatestBehavior;
+use zarv1k\sync\twoway\behavior\action\UpdateConflictBehavior;
+use zarv1k\sync\twoway\behavior\model\SyncableBehavior;
 use yii\base\ActionEvent;
 use yii\base\Behavior;
 use yii\base\Event;
@@ -19,7 +19,7 @@ use yii\rest\UpdateAction;
 
 /**
  * Class TwoWaySyncBehavior
- * @package backend\components\sync\behavior\controller
+ * @package zarv1k\sync\twoway\behavior\controller
  */
 class TwoWaySyncBehavior extends Behavior
 {

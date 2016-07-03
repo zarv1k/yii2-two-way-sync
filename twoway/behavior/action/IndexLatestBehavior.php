@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\components\sync\behavior\action;
+namespace zarv1k\sync\twoway\behavior\action;
 
 use yii\base\Behavior;
 use yii\base\Event;
@@ -11,7 +11,7 @@ use yii\rest\IndexAction;
 /**
  * Class IndexLatestBehavior
  * @property IndexAction owner
- * @package backend\components\sync\behavior\action
+ * @package zarv1k\sync\twoway\behavior\action
  */
 class IndexLatestBehavior extends Behavior
 {
@@ -51,7 +51,7 @@ class IndexLatestBehavior extends Behavior
      */
     public function applyLatestOnlyCondition(Event $event)
     {
-        /** @var \yii\db\BaseActiveRecord|\backend\components\sync\behavior\model\SyncableBehavior $model */
+        /** @var \yii\db\BaseActiveRecord|\zarv1k\sync\twoway\behavior\model\SyncableBehavior $model */
         $model = $event->data;
         /** @var \yii\db\ActiveRecordInterface $modelClass */
         $modelClass = $this->owner->modelClass;

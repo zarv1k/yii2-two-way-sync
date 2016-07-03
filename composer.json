@@ -1,0 +1,25 @@
+{
+  "name": "zarv1k/yii2-two-way-sync",
+  "type": "yii2-extension",
+  "description": "Yii2 Two-Way Sync of REST entities",
+  "keywords": ["yii2", "rest", "sync"],
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Dmitry Zarva",
+      "email": "zarv1k@ya.ru"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": ">=2.0.8"
+  },
+  "require-dev": {
+    "yiisoft/yii2": ">=2.0.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "zarv1k\\sync\\": ""
+    }
+  }
+}

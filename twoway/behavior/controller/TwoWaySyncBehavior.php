@@ -62,7 +62,7 @@ class TwoWaySyncBehavior extends Behavior
                 // TODO: and add method attachSyncBehaviors()
                 // $action->attachSyncBehaviors();
                 
-                throw new NotSupportedException("Not implemented yet");
+//                throw new NotSupportedException("Not implemented yet");
 
                 break;
         }

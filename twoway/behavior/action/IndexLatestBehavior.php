@@ -68,6 +68,8 @@ class IndexLatestBehavior extends Behavior
         $activeQuery
             ->andFilterWhere(['>', $model->timestampColumn, $updatedAfterDate])
             ->addOrderBy($orderBy);
+
+        Event::off(ActiveQuery::className(), ActiveQuery::EVENT_INIT, [$this, 'applyLatestOnlyCondition']);
     }
 
 }
